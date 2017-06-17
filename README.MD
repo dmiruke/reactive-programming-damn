@@ -1,6 +1,11 @@
 # Reactive programming DAMN. it is not about React JS
 
-THE FOLLOWING EXAMPLE IS A DEMO FROM <strong>Jaime González García </strong> @ [https://www.barbarianmeetscoding.com/](https://www.barbarianmeetscoding.com/)
+THE FOLLOWING EXAMPLE IS POWERED  BY <strong>Jaime González García </strong> @ [https://www.barbarianmeetscoding.com/]
+(https://www.barbarianmeetscoding.com/)
+
+Here are more informations about the example:
+
+
 
 I have refactorized code by using Typescript.
 
