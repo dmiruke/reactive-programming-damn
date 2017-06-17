@@ -1,7 +1,6 @@
 import { Observable } from "rxjs";
 import { Subject } from "rxjs";
 import { Background } from "./Classes/Background";
-import { Game } from "./Classes/Game";
 import { Score } from "./Classes/Score";
 import { Player } from "./Classes/Player";
 import { Letter } from "./Classes/Letter";
@@ -52,6 +51,7 @@ var player$: Observable<Player> = Observable
     //Generate new player
     .of(new Player(340, 20, Utils.LIVES));
 
+//Game Loop
 var gameLoop$: Observable<number> = Observable.interval(Utils.INTERVAL_GAME)
 
 var game$ : Observable<any> = gameLoop$
@@ -63,12 +63,7 @@ var game$ : Observable<any> = gameLoop$
     .takeWhile(go => !go.player.isDead())
     .share()
 
-var userWordsAndGame$ = game$
-    .combineLatest(userWords$, (gameObjects, userWord) => {
-        return { gameObjects, userWord }
-    })
-    .distinct(o => o.userWord)
-
+//Subscribe and update game information
 game$
     .subscribe((gameObjects) => {
         gameObjects
@@ -83,10 +78,19 @@ game$
     (error) => { console.error('ERROR: ', error) },
     () => gameOver())
 
+//Match said words
+var userWordsAndGame$ = game$
+    .combineLatest(userWords$, (gameObjects, userWord) => {
+        return { gameObjects, userWord }
+    })
+    .distinct(o => o.userWord)
+
+    
 userWordsAndGame$.subscribe((gou) => {
     matchWords(gou);
     Utils.appendToDom(gou.userWord);
 });
+
 
 function computeLivesLeft(gameObjects) {
     var letters = gameObjects.letters;
