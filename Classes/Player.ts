@@ -1,6 +1,6 @@
 
 import { Game } from "./Game";
-import { Drawings } from "../Utils/Drawings";
+import { Drawings } from "../Modules/Drawings";
 
 
 export class Player extends Game {

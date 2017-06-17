@@ -1,6 +1,7 @@
 import { Game } from "./Game";
-import { Drawings } from "../Utils/Drawings";
-import { Words } from "../Utils/Words";
+import { Drawings } from "../Modules/Drawings";
+import { Words } from "../Modules/Words";
+import { Voice } from "../Modules/Voice";
 
 export class Background extends Game {
     constructor() {
@@ -16,5 +17,13 @@ export class Background extends Game {
         lettersToRemove.forEach(l => {
             Words.removeLetter(l, letters);
         })
+    }
+
+    gameOver() {
+        Drawings.drawRectangle(0, 0, 500, 500)
+        let textStyle = { fillStyle: 'red', font: '52px Chewy' }
+        Drawings.drawText('GAME OVER', 150, 240, textStyle)
+        Drawings.drawText('MOTHERFUCKER', 100, 300, textStyle)
+        Voice.say('GAME OVER MOTHER FUCKER')
     }
 }

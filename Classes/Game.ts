@@ -1,5 +1,5 @@
 /* DOMAIN MODEL */
-import { GameVars } from '../Utils/GameVars';
+import { GameVars } from '../Modules/GameVars';
 export abstract class Game {
     width: number;
     height: number;

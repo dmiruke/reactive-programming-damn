@@ -5,12 +5,12 @@ import { Background } from "./Classes/Background";
 import { Score } from "./Classes/Score";
 import { Player } from "./Classes/Player";
 import { Letter } from "./Classes/Letter";
-import { Drawings } from "./Utils/Drawings";
-import { Words } from "./Utils/Words";
-import { GameVars } from "./Utils/GameVars";
+import { Drawings } from "./Modules/Drawings";
+import { Words } from "./Modules/Words";
+import { Voice } from "./Modules/Voice";
+import { GameVars } from "./Modules/GameVars";
 
-say('START GAME NOW!');
-
+Voice.say('START GAME NOW!');
 /* VOICE STUFF */
 var commands = {
     '*word': word => {
@@ -18,10 +18,7 @@ var commands = {
         userWords$.next(word);
     }
 };
-// Add our commands to annyang
-annyang.addCommands(commands);
-// Start listening. You can call this here, or attach this call to an event, button, etc.
-annyang.start();
+Voice.configureVoiceRecognition(commands);
 
 var userWords$ = new Subject()
 var ScoreSubject = new Subject()
@@ -59,7 +56,7 @@ var gameLoop$: Observable<number> = Observable.interval(GameVars.INTERVAL_GAME)
 
 var game$: Observable<any> = gameLoop$
     .combineLatest(background$, letters$, score$, player$, (_, b, l, s, p) => {
-        var gameObjects = { letters: l, player: p, all: [b, s, p, ...l] }
+        var gameObjects = { letters: l, player: p, background: b, all: [b, s, p, ...l] }
         return gameObjects
     })
     //.sample(Utils.INTERVAL_GAME)
@@ -80,7 +77,7 @@ game$
         background$.subscribe(p => p.cleanUp(gameObjects))
     },
     (error) => { console.error('ERROR: ', error) },
-    () => gameOver())
+    () => background$.subscribe((b) => b.gameOver()))
 
 //Match said words
 var userWordsAndGame$ = game$
@@ -91,36 +88,11 @@ var userWordsAndGame$ = game$
 
 
 userWordsAndGame$.subscribe((gou) => {
-    matchWords(gou);
+    Words.matchWords(gou, function () {
+        console.log('matched word')
+        console.log('scored!');
+        ScoreSubject.next(100)
+    });
     Drawings.appendToDom(gou.userWord);
 });
 
-function matchWords({ gameObjects, userWord }) {
-    console.log(`matching ${userWord} with ${gameObjects.letters.map(l => l.letter)}`);
-    var letterMatched = Words.findLetterMatchingWord(gameObjects.letters, userWord)
-    if (letterMatched) {
-        Words.removeLetter(letterMatched, gameObjects.letters)
-        console.log('matched word')
-        updateScore(100);
-    }
-}
-
-function updateScore(score) {
-    console.log('scored!');
-    ScoreSubject.next(score)
-}
-
-function gameOver() {
-    Drawings.drawRectangle(0, 0, 500, 500)
-    let textStyle = { fillStyle: 'red', font: '52px Chewy' }
-    Drawings.drawText('GAME OVER', 150, 240, textStyle)
-    Drawings.drawText('MOTHERFUCKER', 100, 300, textStyle)
-    say('GAME OVER MOTHER FUCKER')
-}
-
-
-function say(something) {
-    if (!speechSynthesis) return;
-    var speechUtterance = new SpeechSynthesisUtterance(something);
-    speechSynthesis.speak(speechUtterance);
-}

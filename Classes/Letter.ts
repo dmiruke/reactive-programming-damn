@@ -1,6 +1,6 @@
 import { Game } from "./Game";
-import { GameVars } from "../Utils/GameVars";
-import { Drawings } from "../Utils//Drawings";
+import { GameVars } from "../Modules/GameVars";
+import { Drawings } from "../Modules//Drawings";
 
 export class Letter extends Game {
     letter : string;
