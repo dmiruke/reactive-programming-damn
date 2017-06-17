@@ -1,0 +1,48 @@
+body {
+  background-color: #249D7F;
+  //height: 100%;
+  //width: 100%;
+}
+
+.game-chrome {
+  display:flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+.game-surface {
+  width: 500px;
+  height: 500px;
+}
+h1 {
+  text-align: center;
+  font-size: 3em;
+  font-family: 'Chewy', cursive;
+  color: rgba(241, 234, 22, 0.95);
+}
+canvas { 
+  background-color: black;
+  display: inline-block;
+  vertical-align: top;
+}
+ul { 
+  display: inline-block; 
+  padding: 10px; 
+  list-style: none;
+}
+li {
+   float: left;
+   padding: 10px;
+   font-size: 1.5em;
+   font-family: 'Chewy', cursive;
+   background-color: rgba(241, 234, 22, 0.95); 
+   border: 1px solid orange;
+   transform: rotate(3deg);
+   box-shadow: 1px 1px grey;
+}
+li:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+.asset {
+  visibility: hidden;
+}
