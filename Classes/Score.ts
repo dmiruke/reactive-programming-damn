@@ -1,5 +1,5 @@
 import { Game } from "./Game";
-import { Utils } from "./Utils";
+import { Drawings } from "../Utils/Drawings";
 
 export class Score extends Game {
     value : number;
@@ -8,7 +8,7 @@ export class Score extends Game {
         this.value = value;
     }
     draw() {
-        Utils.drawText(this.value, this.width, this.height)
+        Drawings.drawText(this.value, this.width, this.height)
     }
     add(score) {
         this.value += score.value;
