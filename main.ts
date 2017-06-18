@@ -56,11 +56,11 @@ var gameLoop$: Observable<number> = Observable.interval(GameVars.INTERVAL_GAME)
 
 var game$: Observable<any> = gameLoop$
     .combineLatest(background$, letters$, score$, player$, (_, b, l, s, p) => {
-    //FUK U, please https://github.com/tc39/proposal-object-rest-spread#rest-properties
+    //FUKKU, please https://github.com/tc39/proposal-object-rest-spread#rest-properties
         var gameObjects = { letters: l, player: p, background: b, all: [b, s, p, ...l] }
         return gameObjects
     })
-    //.sample(Utils.INTERVAL_GAME)
+    //.sample(gameLoop$)
     .takeWhile(go => !go.player.isDead())
     .share()
 
