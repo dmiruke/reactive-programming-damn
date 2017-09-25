@@ -5,11 +5,12 @@ module.exports = {
         loaders: [
             {
                 test: /.ts$/,
-                loader: "ts-loader"
+                loader: "ts-loader",   
             }
         ]
     },
+   
     resolve: {
-        extensions: ["", ".ts", ".js"]
+        extensions: ["", "Modules/*.ts", "Classes/*.ts", "/*.ts"]
     }
 }
