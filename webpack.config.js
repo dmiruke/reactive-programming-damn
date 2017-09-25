@@ -1,16 +1,21 @@
+const path = require('path');
+
 module.exports = {
-    entry: "./main",
-    output: { filename: "app.js" },
-    module: {
-        loaders: [
-            {
-                test: /.ts$/,
-                loader: "ts-loader",   
-            }
-        ]
-    },
-   
-    resolve: {
-        extensions: ["", "Modules/*.ts", "Classes/*.ts", "/*.ts"]
-    }
-}
+  entry: './src/main.ts',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      }
+    ]
+  },
+  resolve: {
+    extensions: [ ".tsx", ".ts", "**./*.ts" ,".js" ]
+  },
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+};

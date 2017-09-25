@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {},
   "devDependencies": {
+    "ts-loader": "^2.3.7",
     "typescript": "^2.5.2"
   },
   "dependencies": {

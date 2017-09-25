@@ -1,10 +1,10 @@
 import { Observable } from "rxjs";
 import { Subject } from "rxjs";
 
-import { Background } from "./Classes/Background";
-import { Score } from "./Classes/Score";
-import { Player } from "./Classes/Player";
-import { Letter } from "./Classes/Letter";
+import { Background } from "./Entities/Background";
+import { Score } from "./Entities/Score";
+import { Player } from "./Entities/Player";
+import { Letter } from "./Entities/Letter";
 import { Drawings } from "./Modules/Drawings";
 import { Words } from "./Modules/Words";
 import { Voice } from "./Modules/Voice";
