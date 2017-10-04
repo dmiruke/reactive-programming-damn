@@ -11,6 +11,9 @@ module.exports = {
       }
     ]
   },
+  devServer: {
+         contentBase: './'
+  },
   resolve: {
     extensions: [ ".tsx", ".ts", "**./*.ts" ,".js" ]
   },
