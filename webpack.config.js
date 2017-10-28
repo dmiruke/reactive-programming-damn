@@ -3,6 +3,9 @@ const path = require('path');
 module.exports = {
   entry: './src/main.ts',
   module: {
+    loaders: [
+      { test: /\.ts$/, loader: 'ts-loader' }
+    ],
     rules: [
       {
         test: /\.tsx?$/,

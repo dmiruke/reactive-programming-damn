@@ -1,8 +1,7 @@
 export module Words {
 
     export function getRandomLetter() {
-        var letter = String.fromCharCode(97 + Math.floor(Math.random() * 26))
-        return letter
+        return String.fromCharCode(97 + Math.floor(Math.random() * 26))
     }
 
     export function removeLetter(letter, letters) {
@@ -14,9 +13,9 @@ export module Words {
         return letters.find(l => word.toLowerCase().startsWith(l.letter))
     }
 
-    export function matchWords({ gameObjects, userWord }, success: Function) {
+    export function matchWords({gameObjects, userWord}, success: Function) {
         console.log(`matching ${userWord} with ${gameObjects.letters.map(l => l.letter)}`);
-        var letterMatched = Words.findLetterMatchingWord(gameObjects.letters, userWord)
+        const letterMatched = Words.findLetterMatchingWord(gameObjects.letters, userWord);
         if (letterMatched) {
             Words.removeLetter(letterMatched, gameObjects.letters)
             success();

@@ -8,7 +8,7 @@ export module Voice {
 
     export function say(phrase: string) {
         if (!speechSynthesis) return;
-        var speechUtterance = new SpeechSynthesisUtterance(phrase);
+        const speechUtterance = new SpeechSynthesisUtterance(phrase);
         speechSynthesis.speak(speechUtterance);
     }
 }

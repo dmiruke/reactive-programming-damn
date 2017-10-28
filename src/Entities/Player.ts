@@ -17,13 +17,13 @@ export class Player extends Game {
         this.lives -= livesLost;
     }
     draw() {
-        for (var i = 0; i < this.lives; i++) {
+        for (let i = 0; i < this.lives; i++) {
             Drawings.drawImage('.heart', this.width + i * 30, this.height, 30, 30)
         }
     }
     getLivesLeft(gameObjects) {
-        var letters = gameObjects.letters;
-        var livesLost = letters
+        const letters = gameObjects.letters;
+        const livesLost = letters
             .filter(l => l.isOutOfBounds())
             .length;
         gameObjects.player.loseLives(livesLost);
