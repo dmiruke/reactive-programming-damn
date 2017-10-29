@@ -13,6 +13,7 @@ import {GameVars} from "./Modules/GameVars";
 Voice.say('START GAME NOW!');
 
 
+
 const userWords$ = new Subject();
 /* VOICE STUFF */
 const commands = {
@@ -100,4 +101,3 @@ userWordsAndGame$.subscribe((gou) => {
     });
     Drawings.appendToDom(gou.userWord);
 });
-

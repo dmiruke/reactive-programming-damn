@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "start": "webpack; webpack-dev-server --open --https"
   },
+  "jest": { "testEnvironment": "node" },
   "devDependencies": {
     "ts-loader": "^2.3.7",
     "ts-node": "^3.3.0",
