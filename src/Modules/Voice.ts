@@ -6,6 +6,11 @@ export module Voice {
         annyang.start();
     }
 
+    export function stopVoiceRecognition(commands: Object) {
+        console.log("STOP MONITORING! ")
+        annyang.pause();
+    }
+
     export function say(phrase: string) {
         if (!speechSynthesis) return;
         const speechUtterance = new SpeechSynthesisUtterance(phrase);
